@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 
 function App() {
   const [monsters, setMonsters] = useState([]);
+  const [search, setSearch] = useState("");
   useEffect(() => {
     fetch("https://jsonplaceholder.typicode.com/users")
       .then((resp) => resp.json())
@@ -13,13 +14,26 @@ function App() {
 
   return (
     <div className="App">
-      {monsters.map((monster, i) => {
-        return (
-          <h1 key={i}>
-            {monster.name}, {i}
-          </h1>
-        );
-      })}
+      <input
+        value={search}
+        onChange={(e) => setSearch(e.target.value)}
+        placeholder="Search robots"
+        className="search-box"
+        type="search"
+      />
+      {monsters
+        .filter((monster) =>
+          String(monster.name)
+            .toLowerCase()
+            .includes(String(search).toLowerCase())
+        )
+        .map((monster, i) => {
+          return (
+            <h1 key={i}>
+              {monster.name}, {i}
+            </h1>
+          );
+        })}
       <h1></h1>
     </div>
   );
