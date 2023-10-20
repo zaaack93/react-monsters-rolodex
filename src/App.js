@@ -1,5 +1,6 @@
 import "./App.css";
 import CardList from "./components/card-list/card-list.component";
+import SearchBox from "./components/search-box/search-box.component";
 import { useEffect, useState } from "react";
 
 function App() {
@@ -12,32 +13,17 @@ function App() {
         setMonsters(data);
       });
   }, []);
+  const filtredMonsters = monsters.filter((monster) =>
+    String(monster.name).toLowerCase().includes(String(search).toLowerCase())
+  );
 
   return (
     <div className="App">
-      <input
+      <SearchBox
         value={search}
-        onChange={(e) => setSearch(e.target.value)}
-        placeholder="Search robots"
-        className="search-box"
-        type="search"
+        handleChange={(e) => setSearch(e.target.value)}
       />
-      <CardList items={monsters} />
-
-      {monsters
-        .filter((monster) =>
-          String(monster.name)
-            .toLowerCase()
-            .includes(String(search).toLowerCase())
-        )
-        .map((monster, i) => {
-          return (
-            <h1 key={i}>
-              {monster.name}, {i}
-            </h1>
-          );
-        })}
-      <h1></h1>
+      <CardList items={filtredMonsters} />
     </div>
   );
 }
