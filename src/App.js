@@ -1,4 +1,5 @@
 import "./App.css";
+import CardList from "./components/card-list/card-list.component";
 import { useEffect, useState } from "react";
 
 function App() {
@@ -21,6 +22,8 @@ function App() {
         className="search-box"
         type="search"
       />
+      <CardList items={monsters} />
+
       {monsters
         .filter((monster) =>
           String(monster.name)
