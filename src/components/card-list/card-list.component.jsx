@@ -1,13 +1,13 @@
-function CardList({items}) {
+import "./card-list.style.css";
+import CardItem from "../card-item/card-item.component";
+function CardList({ items }) {
   return (
-    <div>
+    <div className="card-list">
       {items.map((item, i) => {
-          return (
-            <h1 key={i}>
-              {item.name}, {i}
-            </h1>
-          );
-        })}
+        return (
+          <CardItem item={item} key={item.id} />
+        );
+      })}
     </div>
   );
 }

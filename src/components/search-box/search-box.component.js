@@ -1,3 +1,5 @@
+import "./search-box.style.css"
+
 function SearchBox({ value, handleChange }) {
   return (
     <input
