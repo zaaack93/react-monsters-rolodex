@@ -19,6 +19,7 @@ function App() {
 
   return (
     <div className="App">
+      <h1 className="app-title">Monsters rolodex</h1>
       <SearchBox
         value={search}
         handleChange={(e) => setSearch(e.target.value)}
